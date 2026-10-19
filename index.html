@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jardín vs Zombis</title>
+<!-- Favicon integrado (sin enlaces externos) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='52' font-size='48'>🌻</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ BARRA SUPERIOR (HUD) ============ -->
+  <header id="hud">
+    <div id="solCaja" title="Soles disponibles">☀ <b id="solCount">150</b></div>
+    <div id="modoCaja" title="Modo de dificultad">⚑ Normal</div>
+    <div id="oleadaCaja">
+      <span id="oleadaLabel">Oleada 1 / 3</span>
+      <div id="oleadaBar"><div id="oleadaFill"></div></div>
+    </div>
+    <div id="hudBtns">
+      <button id="btnSonido" class="hudBtn" title="Activar / silenciar sonido">🔊</button>
+      <button id="btnPausa" class="hudBtn" title="Pausar / reanudar (P)">⏸</button>
+    </div>
+  </header>
+
+  <!-- ============ BARRA DE TARJETAS (plantas) ============ -->
+  <div id="tarjetas">
+    <button class="card" data-plant="girasol" title="Girasol: produce 25 de sol cada 7 s">
+      <canvas class="arte" width="76" height="76"></canvas>
+      <span class="coste">☀ 50</span>
+      <span class="cd"></span>
+    </button>
+    <button class="card" data-plant="guisante" title="Lanzaguisantes: dispara guisantes a los zombis de su carril">
+      <canvas class="arte" width="76" height="76"></canvas>
+      <span class="coste">☀ 100</span>
+      <span class="cd"></span>
+    </button>
+    <button class="card" data-plant="nuez" title="Nuez mural: mucha resistencia y ralentiza al zombi que la mastica">
+      <canvas class="arte" width="76" height="76"></canvas>
+      <span class="coste">☀ 50</span>
+      <span class="cd"></span>
+    </button>
+    <button class="card" data-plant="repetidora" title="Repetidora: dispara dos guisantes por ráfaga">
+      <canvas class="arte" width="76" height="76"></canvas>
+      <span class="coste">☀ 175</span>
+      <span class="cd"></span>
+    </button>
+    <button class="card" data-plant="cereza" title="Petacereza: explota y daña a todos los zombis cercanos">
+      <canvas class="arte" width="76" height="76"></canvas>
+      <span class="coste">☀ 150</span>
+      <span class="cd"></span>
+    </button>
+    <button id="btnPala" class="card pala" title="Pala: quita una planta seleccionada (S)">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="29" y="6" width="6" height="26" rx="2" fill="#a8743f"/>
+        <rect x="24" y="4" width="16" height="7" rx="3" fill="#8a5c2e"/>
+        <path d="M32 32 C22 32 17 42 17 52 L47 52 C47 42 42 32 32 32 Z" fill="#9aa7b3"/>
+        <path d="M32 32 C32 40 32 46 32 52" stroke="#7d8b96" stroke-width="3" fill="none"/>
+      </svg>
+      <span class="coste">Pala</span>
+    </button>
+  </div>
+
+  <!-- ============ JARDÍN ============ -->
+  <main id="stage">
+    <canvas id="lienzo"></canvas>
+    <div id="banner"></div>
+  </main>
+
+  <p id="pista">Toca los soles ☀ para recogerlos · Coloca plantas para frenar a los zombis · Cada carril tiene 1 cortacésped de emergencia 🛺 · Teclas: 1-5 plantas, S pala, P pausa</p>
+</div>
+
+<!-- ============ MENÚ PRINCIPAL ============ -->
+<div id="ovMenu" class="capa">
+  <div class="panel">
+    <div class="emote">🌻⚔️🧟</div>
+    <h1>Jardín vs Zombis</h1>
+    <p class="sub">¡Defiende tu jardín de la horda con tu mejor estrategia de plantas!</p>
+    <ul class="reglas">
+      <li>☀️ Toca los soles que caen del cielo y los que producen los girasoles.</li>
+      <li>🃏 Elige una planta en la barra superior y colócala en una casilla libre del jardín.</li>
+      <li>🛺 Cada carril tiene una cortacésped: si un zombi la pisa, arrasa a todos los del carril… pero solo se usa una vez.</li>
+      <li>🧟 Sobrevive a las 3 oleadas sin que ningún zombi llegue a tu casa.</li>
+      <li>⏸️ Pausa con el botón ⏸ o la tecla P. Usa la pala (S) para retirar plantas.</li>
+    </ul>
+    <p class="modoTitulo">Elige la dificultad:</p>
+    <div class="modos">
+      <button class="btnModo" data-modo="facil">🌱 <b>Fácil</b><small>menos zombis y lentos · 250 ☀</small></button>
+      <button class="btnModo sel" data-modo="normal">🚩 <b>Normal</b><small>la aventura clásica · 150 ☀</small></button>
+      <button class="btnModo" data-modo="dificil">💀 <b>Difícil</b><small>37 zombis veloces · 100 ☀</small></button>
+    </div>
+    <button id="btnComenzar" class="btnGr">▶ Comenzar a jugar</button>
+    <p class="pie">Proyecto académico · HTML + CSS + JavaScript (sin frameworks)</p>
+  </div>
+</div>
+
+<!-- ============ PAUSA ============ -->
+<div id="ovPausa" class="capa oculta">
+  <div class="panel">
+    <div class="emote">⏸️</div>
+    <h2>Juego en pausa</h2>
+    <button id="btnSeguir" class="btnGr">▶ Reanudar</button>
+    <button id="btnReiniciarP" class="btnSec">🔄 Reiniciar partida</button>
+    <button id="btnMenuP" class="btnSec">🏠 Menú principal</button>
+  </div>
+</div>
+
+<!-- ============ FIN DE PARTIDA ============ -->
+<div id="ovFin" class="capa oculta">
+  <div class="panel">
+    <div class="emote" id="finEmote">🏆</div>
+    <h2 id="finTitulo">¡Ganaste!</h2>
+    <p id="finTexto"></p>
+    <div id="finStats" class="stats"></div>
+    <button id="btnReiniciarF" class="btnGr">🔁 Jugar de nuevo</button>
+    <button id="btnMenuF" class="btnSec">🏠 Menú principal</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
