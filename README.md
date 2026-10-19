@@ -66,10 +66,7 @@ si alguno cruza el borde izquierdo del jardín, la partida se pierde.
   mientras tus lanzaguisantes los derriban.
 - Guarda una petacereza para la ¡HORDA FINAL! de la oleada 3.
 
- URL del juego
-   (`https://tu-usuario.github.io/jardin-vs-zombis/`).
-
-🔗 **Enlace al juego publicado:** *file:///C:/Users/Usuario/Desktop/Python/jardin-vs-zombis/index.html*
+🔗 **Enlace al juego publicado:** (`https://tu-usuario.github.io/jardin-vs-zombis/`)*
 
 ## 🗂 Estructura del proyecto
 
