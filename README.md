@@ -66,13 +66,7 @@ si alguno cruza el borde izquierdo del jardín, la partida se pierde.
   mientras tus lanzaguisantes los derriban.
 - Guarda una petacereza para la ¡HORDA FINAL! de la oleada 3.
 
-## 🌐 Cómo activar GitHub Pages
-
-1. En tu repositorio, entra en **Settings** (Configuración).
-2. Ve a la sección **Pages** (menú lateral izquierdo).
-3. En **Source**, elige **Deploy from a branch**.
-4. Selecciona la rama **main** y la carpeta **/ (root)**, y pulsa **Save**.
-5. Espera 1–3 minutos: GitHub te mostrará la URL del juego
+ URL del juego
    (`https://tu-usuario.github.io/jardin-vs-zombis/`).
 
 🔗 **Enlace al juego publicado:** *file:///C:/Users/Usuario/Desktop/Python/jardin-vs-zombis/index.html*
