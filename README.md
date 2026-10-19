@@ -66,24 +66,6 @@ si alguno cruza el borde izquierdo del jardín, la partida se pierde.
   mientras tus lanzaguisantes los derriban.
 - Guarda una petacereza para la ¡HORDA FINAL! de la oleada 3.
 
-## 📤 Cómo subir el proyecto a GitHub
-
-1. Crea una cuenta en [github.com](https://github.com) (si no la tienes).
-2. Pulsa **New repository**, ponle nombre (por ejemplo `jardin-vs-zombis`) y pulsa **Create**.
-3. Dentro del repositorio, pulsa **uploading an existing file** (o "Add file → Upload files").
-4. Suelta los 4 archivos del proyecto: `index.html`, `style.css`, `game.js` y `README.md`.
-5. Escribe un mensaje de commit (por ejemplo "Primera versión del juego") y pulsa **Commit changes**.
-
-> Alternativa con Git instalado:
-> ```bash
-> git init
-> git add .
-> git commit -m "Primera versión de Jardín vs Zombis"
-> git branch -M main
-> git remote add origin https://github.com/TU-USUARIO/jardin-vs-zombis.git
-> git push -u origin main
-> ```
-
 ## 🌐 Cómo activar GitHub Pages
 
 1. En tu repositorio, entra en **Settings** (Configuración).
@@ -93,7 +75,7 @@ si alguno cruza el borde izquierdo del jardín, la partida se pierde.
 5. Espera 1–3 minutos: GitHub te mostrará la URL del juego
    (`https://tu-usuario.github.io/jardin-vs-zombis/`).
 
-🔗 **Enlace al juego publicado:** *(añade aquí la URL cuando lo publiques)*
+🔗 **Enlace al juego publicado:** *file:///C:/Users/Usuario/Desktop/Python/jardin-vs-zombis/index.html*
 
 ## 🗂 Estructura del proyecto
 
